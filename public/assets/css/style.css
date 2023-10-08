@@ -1,0 +1,14 @@
+/* div {
+    font-family: Arial, sans-serif;
+    background-color: #c22121;
+    margin: 0;
+    padding: 0;
+} */
+
+.monLogo {
+    /* Définissez les styles CSS pour .maClassName ici */
+    color: #c22121;
+    background-color: aqua !important;
+    font-weight: bold;
+    /* Ajoutez d'autres propriétés CSS au besoin */
+}
