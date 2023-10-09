@@ -20,8 +20,8 @@ class Utilisateurs implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 180, unique: true)]
     private ?string $email = null;
 
-    #[ORM\Column]
-    private array $roles = [];
+    // #[ORM\Column]
+    // private array $roles = [];
 
     /**
      * @var string The hashed password
@@ -32,7 +32,7 @@ class Utilisateurs implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 50)]
     private ?string $nom = null;
 
-    #[ORM\OneToMany(mappedBy: 'idCreateur', targetEntity: Evenements::class)]
+    #[ORM\OneToMany(mappedBy: 'createur', targetEntity: Evenements::class)]
     private Collection $evenements;
 
     #[ORM\ManyToMany(targetEntity: Evenements::class, mappedBy: 'utilisateurs')]
@@ -138,7 +138,7 @@ class Utilisateurs implements UserInterface, PasswordAuthenticatedUserInterface
     {
         if (!$this->evenements->contains($evenement)) {
             $this->evenements->add($evenement);
-            $evenement->setIdCreateur($this);
+            $evenement->setCreateur($this);
         }
 
         return $this;
@@ -148,8 +148,8 @@ class Utilisateurs implements UserInterface, PasswordAuthenticatedUserInterface
     {
         if ($this->evenements->removeElement($evenement)) {
             // set the owning side to null (unless already changed)
-            if ($evenement->getIdCreateur() === $this) {
-                $evenement->setIdCreateur(null);
+            if ($evenement->getCreateur() === $this) {
+                $evenement->setCreateur(null);
             }
         }
 

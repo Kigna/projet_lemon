@@ -29,7 +29,7 @@ class Evenements
     private ?\DateTimeInterface $dateFin = null;
 
     #[ORM\ManyToOne(inversedBy: 'evenements')]
-    private ?Utilisateurs $idCreateur = null;
+    private ?Utilisateurs $createur = null;
 
     #[ORM\ManyToMany(targetEntity: Utilisateurs::class, inversedBy: 'mesEvenements')]
     private Collection $utilisateurs;
@@ -92,14 +92,14 @@ class Evenements
         return $this;
     }
 
-    public function getIdCreateur(): ?Utilisateurs
+    public function getCreateur(): ?Utilisateurs
     {
-        return $this->idCreateur;
+        return $this->createur;
     }
 
-    public function setIdCreateur(?Utilisateurs $idCreateur): static
+    public function setCreateur(?Utilisateurs $createur): static
     {
-        $this->idCreateur = $idCreateur;
+        $this->createur = $createur;
 
         return $this;
     }

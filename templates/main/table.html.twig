@@ -1,9 +1,3 @@
-{% extends 'base.html.twig' %}
-
-{% block title %}Hello MainController!{% endblock %}
-
-{% block body %}
-
 <table>
     <thead>
         <tr>
@@ -19,11 +13,10 @@
                 <td>{{ evenement.titre }}</td>
                 <td>{{ evenement.dateDebut|date('Y-m-d') }}</td>
                 <td>{{ evenement.dateFin|date('Y-m-d') }}</td>
-                <td>{{ evenement.createur.getNom() }}</td>
+                <td>{{ evenement.createur.nom }}</td>
             </tr>
             <script> console.log(evenements) console.log('salut')</script>
         {% endfor %}
         
     </tbody>
 </table>
-{% endblock %}
