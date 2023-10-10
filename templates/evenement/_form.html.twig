@@ -1,0 +1,19 @@
+
+
+<div class="col-7 mx-auto">
+{{form_start(formEvenement) }}
+     {{form_row(formEvenement.titre)}}
+     {{form_row(formEvenement.description)}}
+     {{form_row(formEvenement.dateDebut)}}
+     {{form_row(formEvenement.dateFin)}}
+     <button type="submit" class="btn btn-sm btn-outline-primary" >{{button_label| default('Enregistrer')}} </button>
+{{form_end(formEvenement)}}
+</div>
+
+
+   
+        {% for message in app.flashes('success') %}
+            <div class="alert alert-success">
+                {{ message }}
+            </div>
+        {% endfor %}

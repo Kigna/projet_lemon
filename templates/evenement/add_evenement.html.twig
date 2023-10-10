@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello EvenementController!{% endblock %}
+
+{% block body %}
+    <main class="container">
+        <section class="row">
+            <div class="col-12">
+                <h2>Ajouter un évenements</h2>
+                {% include "evenement/_form.html.twig" %}
+            </div>
+        </section>
+    </main>            
+{% endblock %}
