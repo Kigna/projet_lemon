@@ -1,7 +1,48 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello EvenementController!{% endblock %}
-
 {% block body %}
-<h2>Mes evements sont en retart</h2>
+
+<div class="container mx-5">
+     {% for message in app.flashes('success') %}
+            <div class="alert alert-success">
+                {{ message }}
+            </div>
+    {% endfor %}
+<table class='table table-striped border table-hover table-bordered'>
+    <thead>
+        <tr>
+            <th>Titre</th>
+            <th>Descriptions</th>
+            <th>Date de début</th>
+            <th>Date de fin</th>
+            <th>Créateur</th>
+            <th>Actions</th>
+
+          
+        </tr>
+    </thead>
+    <tbody class="table-group-divider">
+                {% for evenement in evenements %}
+                    <tr>
+                        <td>{{ evenement.titre }}</td>
+                        <td>{{ evenement.description|raw }}</td>
+                        <td>{{ evenement.dateDebut|date('Y-m-d H:i') }}</td>
+                        <td>{{ evenement.dateFin|date('Y-m-d H:i') }}</td>
+                        <td>{{ evenement.createur.getNom() }}</td>
+                        <td>
+                            <a href="{{ path('app_edit_evenement', {'id': evenement.id}) }}" class="mx-1"><button class="btn btn-sm mx-auto btn-outline-primary">Editer</button></a>
+                            <a href="{{ path('app_delete_evenement', {'id': evenement.id}) }}" class="mx-1" >
+                                <button class="btn btn-sm mx-auto btn-outline-danger" >Supprimer</button>
+                            </a>
+                        </td>
+                          
+                        
+                    </tr>
+                {% endfor %}
+            </tbody>
+</table>
+</div>
+
+
 {% endblock %}
+

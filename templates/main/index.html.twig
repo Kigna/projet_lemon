@@ -1,29 +1,63 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello MainController!{% endblock %}
-
 {% block body %}
 
-<table>
+<div class="container mx-5">
+    {% for message in app.flashes('success') %}
+            <div class="alert alert-success">
+                {{ message }}
+            </div>
+   {% endfor %}
+<table class='table table-striped border table-hover table-bordered'>
     <thead>
         <tr>
             <th>Titre</th>
+            <th>Descriptions</th>
             <th>Date de début</th>
             <th>Date de fin</th>
             <th>Créateur</th>
+                {% if app.user %}
+                <th>Actions</th>
+                {% endif %}
         </tr>
     </thead>
-    <tbody>
-        {% for evenement in evenements %}
-            <tr>
-                <td>{{ evenement.titre }}</td>
-                <td>{{ evenement.dateDebut|date('Y-m-d') }}</td>
-                <td>{{ evenement.dateFin|date('Y-m-d') }}</td>
-                <td>{{ evenement.createur.getNom() }}</td>
-            </tr>
-            <script> console.log(evenements) console.log('salut')</script>
-        {% endfor %}
-        
-    </tbody>
+    <tbody class="table-group-divider">
+                {% for evenement in evenements %}
+                    <tr>
+                        <td>{{ evenement.titre }}</td>
+                        <td>{{ evenement.description|raw }}</td>
+                        <td>{{ evenement.dateDebut|date('Y-m-d H:i') }}</td>
+                        <td>{{ evenement.dateFin|date('Y-m-d H:i') }}</td>
+                        <td>{{ evenement.createur.getNom() }}</td>
+                           {% if app.user %}
+                         <td>
+                            <div class="d-flex justify-content-spacebetween align-items-center ">
+                            {% if evenement.utilisateurs.contains(app.user) %}
+                            
+                             <a href="{{ path('app_desinscrire', {'id': evenement.id}) }}" >
+                                <button class="btn btn-sm mx-auto btn-outline-danger" >Se désinscrire</button>
+                            </a>
+                                
+                            {% else %}
+                            <a href="{{ path('app_inscrire', {'id': evenement.id}) }}" >
+                                <button class="btn btn-sm mx-auto btn-outline-success" >S'inscrire</button>
+                            </a>
+                            {% endif %}
+                            {% if app.user and evenement.createur == app.user %}
+                                <a href="{{ path('app_edit_evenement', {'id': evenement.id}) }}" class="mx-1">
+                                    <button class="btn btn-sm mx-auto btn-outline-primary">Editer</button>
+                                </a>
+                            {% endif %}
+                            </div>
+                            
+                        </td> 
+                            {% endif %}
+                        
+                    </tr>
+                {% endfor %}
+            </tbody>
 </table>
+</div>
+
+
 {% endblock %}

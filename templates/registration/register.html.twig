@@ -3,9 +3,9 @@
 {% block title %}Inscription{% endblock %}
 
 {% block body %}
-    <h1>Inscription</h1>
     <main class="container">
         <section class="row">
+          <h1>Inscription</h1>
             <div class="col-12">
                 {{ form_errors(registrationForm) }}
 
@@ -17,7 +17,8 @@
                     }) }}
                     {{ form_row(registrationForm.RGPDConsent) }}
 
-                    <button type="submit" class="btn btn-sm btn-outline-primary">S'inscrire</button>
+                    <button type="submit" class="btn btn-sm btn-outline-primary">M'inscrire</button>
+                    <a class="btn btn-sm btn-outline-secondary"  href="{{path('app_login')}}">Me connecter</a>
                 {{ form_end(registrationForm) }}
             </div>   
         </section>

@@ -27,7 +27,7 @@ class UsersAndEvenementsFixtures extends Fixture
           // Génération de 10 événements
          // Génération de 10 événements
   $evenements = [];
-for ($i = 0; $i < 40; $i++) {
+for ($i = 0; $i < 10; $i++) {
     $evenement = new Evenements();
     $evenement->setTitre('Events ' . $i);
     $evenement->setDescription('description pour l\'événement ' . $i);
